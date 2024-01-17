@@ -9,7 +9,7 @@ module.exports = function (db) {
   router.get('/', async (req, res, next) => {
     const data = await User.find().toArray()
     try {
-      res.status(201).json(data);
+      res.status(200).json({ data });
     } catch (err) {
       res.status(500).json({ err })
     }
@@ -19,7 +19,7 @@ module.exports = function (db) {
     try {
       const id = req.params.id
       const user = await User.findOne({ _id: new ObjectId(id) })
-      res.status(201).json(user)
+      res.status(200).json(user)
     } catch (err) {
       res.status(500).json({ err })
     }
@@ -52,7 +52,7 @@ module.exports = function (db) {
     try {
       const id = req.params.id
       const user = await User.findOneAndDelete({ _id: new ObjectId(id) })
-      res.status(201).json(user)
+      res.status(200).json(user)
     } catch (err) {
       res.status(500).json({ err })
     }
