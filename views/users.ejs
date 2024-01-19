@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Breads(Browse, Read, Edit, Add, Delete, Sort)</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="javascripts/user.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>MongoDB Breads(Browse, Read, Edit, Add, Delete, Sort)</h2>
+        </header>
+        <div class="container-body">
+            <div class="form-entries">
+                <div class="entires-data">
+                    <form>
+                        <span>show</span>
+                        <select class="select-opt">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>all</option>
+                        </select>
+                        <span>entries</span>
+                    </form>
+                </div>
+                <div class="byname">
+                    <input type="text" name="name" placeholder="search" class="search-form" value="" /><br>
+                    <button class="src-btn" type="submit">CR</button>
+                    <button class="ref-btn" type="button">RE</button>
+                </div>
+            </div>
+
+            <div class="list-user">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Vian</td>
+                            <td>09877</td>
+                            <td><button onclick="return onDelete()">delete</button><button onclick="return onUpdate()">update</button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Vian</td>
+                            <td>09877</td>
+                            <td>yes or no</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <footer>
+            <div class="foot">
+                <button class="add-btn" type="button">+</button>
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a class="active" href="#">1</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<!-- <div class="notif" id="notif">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Confirmation</h4>
+                <p class="close" onclick="off()">&times;</p>
+            </div>
+            <div class="modal-body">
+                <p id="ask"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-grp">
+                    <button type="button" class="off-click" onclick="off()">No</button>
+                    <a id="nextdelete" class="nextdel" href="#">Yes</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+<!-- Modals delete and update -->
+
+<div id="notification" class="notification">
+    <div class="modals">
+        <div class="popup-delete">
+            <div class="delete-header">
+                <p>Delete Confirmation</p>
+                <p onclick="cancleDelete()">X</p>
+            </div>
+            <div class="delete-body">
+                <p class="asking">Are you sure?</p>
+            </div>
+            <div class="delete-footer">
+                <span class="btn-no" onclick="cancleDelete()">No</span>
+                <a id="btn-yes" class="btn-yes" href="#">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notification-update" class="notification-update">
+    <div class="modals-update">
+        <div class="popup-update">
+            <div class="update-header">
+                <p>User form</p>
+                <p onclick="cancleUpdate()">X</p>
+            </div>
+            <div class="update-body">
+                <div class="form-name">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="input-name" required>
+                </div>
+                <div class="form-number">
+                    <label for="number">Phone</label>
+                    <input type="tel" id="phone" class="input-number" required>
+                </div>
+            </div>
+            <div class="update-footer">
+                <span class="btn-cancle" onclick="cancleUpdate()">No</span>
+                <a id="btn-sub" class="btn-yes" href="#">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
