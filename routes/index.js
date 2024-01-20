@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('users');
 });
 
-router.get('/users/:id/todos', function(req, res, next) {
+router.get('/todos', function(req, res, next) {
   res.render('todos');
 });
 
