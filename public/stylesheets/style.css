@@ -71,6 +71,7 @@ tr:nth-child(odd) {
   font-size: medium;
 }
 
+
 .src-btn {
   padding: 7px 14px;
   background-color: transparent;
@@ -330,4 +331,37 @@ tr:nth-child(odd) {
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+}
+
+.btnAd {
+  padding: 8px 10px;
+  background-color: green;
+  border-radius: 8px;
+  border-style: solid;
+  margin-left: 1px;
+  border-color: green;
+  cursor: pointer;
+
+}
+
+.btnAd:hover {
+  background-color: rgb(5, 71, 5);
+  border-color: rgb(5, 71, 5);
+  cursor: pointer;
+}
+
+.btnDel {
+  padding: 8px 10px;
+  background-color: red;
+  border-radius: 8px;
+  border-style: solid;
+  margin-left: 1px;
+  border-color: red;
+  cursor: pointer;
+}
+
+.btnDel:hover {
+  background-color: rgb(143, 7, 7);
+  border-color: rgb(143, 7, 7);
+  cursor: pointer;
 }

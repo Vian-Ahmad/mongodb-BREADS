@@ -29,11 +29,11 @@
                     </form>
                 </div>
                 <div class="byname">
-                    <input type="text" name="name" placeholder="search" class="search-form" value="" /><br>
-                    <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
-                            style="color: #919191;"></i></button>
-                    <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
-                            style="color: #FFD43B;"></i></button>
+                    <input type="text" name="name" placeholder="search" class="search-form" value="" />
+                        <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
+                                style="color: #919191;"></i></button>
+                        <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
+                                style="color: #FFD43B;"></i></button>
                 </div>
             </div>
 
@@ -47,27 +47,15 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Vian</td>
-                            <td>09877</td>
-                            <td><button onclick="return onDelete()">delete</button><button
-                                    onclick="return onUpdate()">update</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Vian</td>
-                            <td>09877</td>
-                            <td>yes or no</td>
-                        </tr>
+                    <tbody id="bodytable" class="bodytable">
+
                     </tbody>
                 </table>
             </div>
         </div>
         <footer>
             <div class="foot">
-                <button class="add-btn" type="button">+</button>
+                <button class="add-btn" id="addButton" type="button">+</button>
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a class="active" href="#">1</a>
@@ -76,49 +64,58 @@
             </div>
         </footer>
     </div>
+
+    <!-- Modals delete and update -->
+
+    <div id="notification-delete" class="notification-delete">
+        <div class="popupDelete">
+            <div class="delete-header">
+                <p>Delete Confirmation</p>
+                <p onclick="cancleDelete()">X</p>
+            </div>
+            <div class="delete-body">
+                <p class="asking">Are you sure?</p>
+            </div>
+            <div class="delete-footer">
+                <span class="btn-no" onclick="cancleDelete()">No</span>
+                <a id="btn-yes" class="btn-yes" href="#" onclick="deleteData()">Yes</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-update" class="notification-update">
+        <div class="modals-update">
+            <div class="popup-update">
+                <div class="update-header">
+                    <p>User form</p>
+                    <p onclick="cancleUpdate()">X</p>
+                </div>
+                <div class="update-body">
+                    <div class="form-name">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="input-name" required>
+                    </div>
+                    <div class="form-number">
+                        <label for="number">Phone</label>
+                        <input type="tel" id="phone" class="input-number" required>
+                    </div>
+                </div>
+                <div class="update-footer">
+                    <span class="btn-cancle" onclick="cancleUpdate()">No</span>
+                    <a id="btn-sub" class="btn-yes" href="#">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
-<!-- Modals delete and update -->
-
-<div id="notification-delete" class="notification-delete">
-    <div class="popupDelete">
-        <div class="delete-header">
-            <p>Delete Confirmation</p>
-            <p onclick="cancleDelete()">X</p>
-        </div>
-        <div class="delete-body">
-            <p class="asking">Are you sure?</p>
-        </div>
-        <div class="delete-footer">
-            <span class="btn-no" onclick="cancleDelete()">No</span>
-            <a id="btn-yes" class="btn-yes" href="#">Yes</a>
-        </div>
-    </div>
-</div>
-
-<div id="notification-update" class="notification-update">
-    <div class="modals-update">
-        <div class="popup-update">
-            <div class="update-header">
-                <p>User form</p>
-                <p onclick="cancleUpdate()">X</p>
-            </div>
-            <div class="update-body">
-                <div class="form-name">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" class="input-name" required>
-                </div>
-                <div class="form-number">
-                    <label for="number">Phone</label>
-                    <input type="tel" id="phone" class="input-number" required>
-                </div>
-            </div>
-            <div class="update-footer">
-                <span class="btn-cancle" onclick="cancleUpdate()">No</span>
-                <a id="btn-sub" class="btn-yes" href="#">Save changes</a>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    function setActionsButtons(_id) {
+        return `
+                <button class="btnAd" onclick="editUser('${_id}')"><i class="fa-solid fa-pencil" style="color: #ffffff;"></i></button>
+                <button class="btnDel" onclick="onDelete('${_id}')"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+            `;
+    }
+</script>
+<script src="javascripts/user.js"></script>
 
 </html>
