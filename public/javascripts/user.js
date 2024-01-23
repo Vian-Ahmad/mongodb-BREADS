@@ -1,12 +1,13 @@
-let id = null, conditional = null, page = 1, query = '', limit = 5, sortBy = '_id', sortMode = 'desc'
+let userId = null, conditional = null, page = 1, query = '', limit = 5, sortBy = '_id', sortMode = 'desc'
 let data = ``
 
 
 
 
 function getId(_id) {
-    id = _id
+    userId = _id
 }
+
 
 function onDelete(_id) {
     userId = _id
@@ -18,37 +19,27 @@ function cancleDelete() {
     document.getElementById("notification-delete").style.display = "none";
 }
 
-function onUpdate(_id, name, phone){
-    
+function onAdd() {
+    userId = null
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("notification-form").style.display = "block";
 }
-// let addButton = document.getElementById('addButton')
-// addButton.onclick = () => {
-//     conditional = true
-//     const name = document.getElementById('name').value = ""
-//     const phone = document.getElementById('phone').value = ""
-// }
 
+function onUpdate(_id) {
+    if (userId = _id) {
+        document.getElementById("notification-form").style.display = "block";
+        fillUpdateForm(userId); // Mengisi formulir jika ada ID yang dipilih
+    } else {
+        alert("Pilih pengguna terlebih dahulu.");
+    }
+}
 
-// function onDelete(_id) {
-//     document.getElementById("notification-delete").style.display = "block";
-//     document.getElementById("btn-yes").setAttribute("href", `users/delete/${usersid}`);
-//     return false
-// }
+function cancleform() {
+    userId = null
+    document.getElementById("notification-form").style.display = "none"
 
-// function cancleDelete() {
-//     document.getElementById("notification-delete").style.display = "none";
-// }
-
-// function onUpdate(usersid, title) {
-//     document.getElementById("notification-update").style.display = "block";
-//     document.getElementById("btn-submit").setAttribute("href", `users/delete/${usersid}`);
-//     return false
-// }
-
-// function cancleUpdate() {
-//     document.getElementById("notification-update").style.display = "none";
-// }
-
+}
 
 const readData = async function () {
     try {
@@ -73,6 +64,55 @@ const readData = async function () {
 
 readData()
 
+async function fillUpdateForm(userId) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+      const userData = await response.json();
+  
+      if (response.ok) {
+        document.getElementById("name").value = userData.name;
+        document.getElementById("phone").value = userData.phone;
+      } else {
+        console.log("Failed to fetch user data for add/update");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+async function saveData() {
+    try {
+        const addUpdateName = document.getElementById("name").value;
+        const addUpdatePhone = document.getElementById("phone").value;
+
+        let method, url;
+        if (userId) {
+            method = "PUT";
+            url = `http://localhost:3000/api/users/${userId}`;
+        } else {
+            method = "POST";
+            url = "http://localhost:3000/api/users";
+        }
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: addUpdateName, phone: addUpdatePhone })
+        });
+
+        if (response.ok) {
+            readData();
+            cancleform();
+        } else {
+            console.log("Failed to save data");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function deleteData() {
     try {
         const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
@@ -86,9 +126,9 @@ async function deleteData() {
             readData()
             cancleDelete()
         } else {
-            console.log("Failed to delete data")
+            alert("Failed to delete data")
         }
     } catch (error) {
-        console.log(error)
+        alert(error)
     }
 }

@@ -55,7 +55,7 @@
         </div>
         <footer>
             <div class="foot">
-                <button class="add-btn" id="addButton" type="button">+</button>
+                <button class="add-btn" id="addButton" type="button" onclick="onAdd()">+</button>
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a class="active" href="#">1</a>
@@ -83,14 +83,14 @@
         </div>
     </div>
 
-    <div id="notification-update" class="notification-update">
-        <div class="modals-update">
-            <div class="popup-update">
-                <div class="update-header">
+    <div id="notification-form" class="notification-form">
+        <div class="modals-form">
+            <div class="popup-form">
+                <div class="form-header">
                     <p>User form</p>
-                    <p onclick="cancleUpdate()">X</p>
+                    <p onclick="cancleform()">x</p>
                 </div>
-                <div class="update-body">
+                <div class="form-body">
                     <div class="form-name">
                         <label for="name">Name</label>
                         <input type="text" id="name" class="input-name" required>
@@ -100,9 +100,9 @@
                         <input type="tel" id="phone" class="input-number" required>
                     </div>
                 </div>
-                <div class="update-footer">
-                    <span class="btn-cancle" onclick="cancleUpdate()">No</span>
-                    <a id="btn-sub" class="btn-yes" href="#">Save changes</a>
+                <div class="form-footer">
+                    <span class="btn-cancle" onclick="cancleform()">No</span>
+                    <a id="btn-sub" class="btn-yes" href="#" onclick="saveData()">Save changes</a>
                 </div>
             </div>
         </div>
@@ -111,10 +111,11 @@
 <script>
     function setActionsButtons(_id) {
         return `
-                <button class="btnAd" onclick="editUser('${_id}')"><i class="fa-solid fa-pencil" style="color: #ffffff;"></i></button>
+                <button class="btnAd" onclick="onUpdate('${_id}')"><i class="fa-solid fa-pencil" style="color: #ffffff;"></i></button>
                 <button class="btnDel" onclick="onDelete('${_id}')"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
             `;
     }
+
 </script>
 <script src="javascripts/user.js"></script>
 
