@@ -103,7 +103,7 @@ tr:nth-child(odd) {
 }
 
 .add-btn:hover {
- background-color: rgb(4, 74, 101);
+  background-color: rgb(4, 74, 101);
 }
 
 .container-body {
@@ -124,17 +124,22 @@ tr:nth-child(odd) {
   margin-left: 10px;
 }
 
+/* .rightfooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
+
 .basket-pagi {
-  padding-left: 100Px;
+  padding-left: 20Px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
 }
 
-.pagination {
-  display: inline-block;
-  margin-right: 8px;
-
-}
-
-.pagination a {
+.basket-pagi a {
   color: rgb(51, 190, 244);
   font-weight: bold;
   float: left;
@@ -143,26 +148,51 @@ tr:nth-child(odd) {
   transition: background-color .3s;
   border: 1px solid rgb(240, 240, 240);
   background-color: #ffffff;
+  cursor: pointer;
 }
 
-.pagination a.active {
+.pagination-btn {
+  color: rgb(51, 190, 244);
+  font-weight: bold;
+  float: left;
+  padding: 7px 9px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid rgb(240, 240, 240);
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.basket-pagi a.active {
   background-color: #2696FE;
   color: white;
   border: 1px solid #2696FE;
 }
 
-.pagination a:hover:not(.active) {
+.pagination-btn:hover:not(.active) {
   background-color: #ddd;
 }
 
-.pagination a:first-child {
+.pagination-btn:first-child {
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }
 
-.pagination a:last-child {
+.pagination-btn:last-child {
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
+}
+
+#pagination-container:first-child {
+  /* Gaya untuk tombol pertama */
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 5px;
+}
+
+#pagination-container:last-child {
+  /* Gaya untuk tombol terakhir */
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 5px;
 }
 
 /* notif delete */

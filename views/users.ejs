@@ -20,7 +20,7 @@
                 <div class="entires-data">
                     <form>
                         <span>show</span>
-                        <select class="select-opt" id="limit" onchange="limitData()">
+                        <select class="select-opt" id="limit" type="text" onchange="limitData()">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="0">all</option>
@@ -29,11 +29,12 @@
                     </form>
                 </div>
                 <div class="byname">
-                    <input type="text" name="name" placeholder="search" class="search-form" value="" id="searchName" oninput="searchName"/>
-                        <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
-                                style="color: #919191;"></i></button>
-                        <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
-                                style="color: #FFD43B;"></i></button>
+                    <input type="text" name="name" placeholder="search" class="search-form" value="" id="searchName"
+                        oninput="searchName" />
+                    <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
+                            style="color: #919191;"></i></button>
+                    <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
+                            style="color: #FFD43B;"></i></button>
                 </div>
             </div>
 
@@ -54,11 +55,9 @@
             </div>
         </div>
         <footer>
-            <div class="foot">
+            <div class="foot" id="foot">
                 <button class="add-btn" id="addButton" type="button" onclick="onAdd()">+</button>
                 <div id="pagination-container" class="basket-pagi">
-                    <div class="pagination">
-                      </div>
                 </div>
             </div>
         </footer>
