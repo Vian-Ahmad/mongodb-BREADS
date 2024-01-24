@@ -54,6 +54,7 @@ tr:nth-child(odd) {
   border-style: solid;
   border: 1px solid white;
   font-size: medium;
+  cursor: pointer;
 }
 
 .byname {
@@ -79,6 +80,11 @@ tr:nth-child(odd) {
   border-style: solid;
   border-color: #cfcfcf;
   margin-left: 1px;
+  cursor: pointer;
+}
+
+.src-btn:hover {
+background-color: rgb(194, 194, 194);
 }
 
 .ref-btn {
@@ -88,6 +94,11 @@ tr:nth-child(odd) {
   border-style: solid;
   border-color: #FFD43B;
   margin-left: 1px;
+  cursor: pointer;
+}
+
+.ref-btn:hover {
+ background-color: #FFD43B;
 }
 
 .add-btn {
@@ -110,8 +121,6 @@ tr:nth-child(odd) {
   background-color: white;
   border-top: 1px solid #d3d3d3;
   border-bottom: 1px solid #d3d3d3;
-
-
 }
 
 .foot {
@@ -123,12 +132,6 @@ tr:nth-child(odd) {
   margin-right: 10px;
   margin-left: 10px;
 }
-
-/* .rightfooter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-} */
 
 .basket-pagi {
   padding-left: 20Px;
@@ -184,13 +187,11 @@ tr:nth-child(odd) {
 }
 
 #pagination-container:first-child {
-  /* Gaya untuk tombol pertama */
   border-top-left-radius: 4px;
   border-bottom-left-radius: 5px;
 }
 
 #pagination-container:last-child {
-  /* Gaya untuk tombol terakhir */
   border-top-right-radius: 4px;
   border-bottom-right-radius: 5px;
 }

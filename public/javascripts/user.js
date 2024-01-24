@@ -26,7 +26,7 @@ function onAdd() {
 function onUpdate(_id) {
     if (userId = _id) {
         document.getElementById("notification-form").style.display = "block";
-        fillUpdateForm(userId); // Mengisi formulir jika ada ID yang dipilih
+        fillUpdateForm(userId);
     } else {
         alert("Please Choose User");
     }
@@ -51,57 +51,73 @@ const searchName = () => {
     readData()
 }
 
+const reset = () => {
+    document.getElementById('searchName').value = ''
+    limit = document.getElementById('limit').value = "5"
+    sortBy = '_id'
+    sortMode = 'desc'
+    let defaultName = `<a onclick="sortNameAsc('name')"><i class="fa-solid fa-sort"
+    style="color: #000000;"></i></a>&nbsp;Name`
+    let defaultPhone = `<a onclick="sortPhoneAsc('phone')"><i class="fa-solid fa-sort"
+    style="color: #000000;"></i></a>&nbsp;Phone`
+    query = ''
 
-// const renderPagination = (totalPages, currentPage) => {
-//     const paginationContainer = document.getElementById('pagination-container');
-//     paginationContainer.innerHTML = '';
-
-//     const prevButton = document.createElement('a');
-//     prevButton.className = 'pagination-btn';
-//     prevButton.innerHTML = '&laquo;';
-//     prevButton.onclick = function () {
-//         if (currentPage > 1) {
-//             changePage(currentPage - 1);
-//         }
-//     };
-//     if (currentPage > 1) {
-//         paginationContainer.appendChild(prevButton);
-//     }
-
-//     for (let i = 1; i <= totalPages; i++) {
-//         const pageLink = document.createElement('a');
-//         pageLink.className = 'pagination-btn';
-//         pageLink.textContent = i;
-
-//         pageLink.onclick = function () {
-//             changePage(i);
-//         };
-
-//         if (i === currentPage) {
-//             pageLink.classList.add('active');
-//         }
-
-//         paginationContainer.appendChild(pageLink);
-//     }
-
-//     const nextButton = document.createElement('a');
-//     nextButton.className = 'pagination-btn';
-//     nextButton.innerHTML = '&raquo;';
-//     nextButton.onclick = function () {
-//         if (currentPage < totalPages) {
-//             changePage(currentPage + 1);
-//         }
-//     };
-
-//     if (currentPage < totalPages) {
-//         paginationContainer.appendChild(nextButton);
-//     }
-
-// }
+    document.getElementById('sort-name').innerHTML = defaultName
+    document.getElementById('sort-phone').innerHTML = defaultPhone
+    readData()
+}
 
 const changePage = (num) => {
     page = num
     readData(page)
+}
+
+const sortNameAsc = (name) => {
+    sortBy = name
+    sortMode = 'asc'
+    let random = `<a type="button" onclick="sortPhoneAsc('name')"><i class="fa-solid fa-sort"></i></a> Phone</th>`
+    let sortAsc = `
+    <a type="button" onclick="sortNameDesc('name')"><i class="fa-solid fa-sort-up"></i></a>
+    <span>Name</span>
+    `
+    document.getElementById(`sort-name`).innerHTML = sortAsc
+    document.getElementById(`sort-phone`).innerHTML = random
+    readData()
+}
+
+const sortNameDesc = (name) => {
+    sortBy = name
+    sortMode = 'desc'
+    let sortDesc = `
+    <a type="button" onclick="sortNameAsc('name')"><i class="fa-solid fa-sort-down"></i></a>
+    <span>Name</span>
+    `
+    document.getElementById(`sort-name`).innerHTML = sortDesc
+    readData()
+}
+
+const sortPhoneAsc = (phone) => {
+    sortBy = phone
+    sortMode = 'asc'
+    let random = `<a type="button" onclick="sortNameAsc('name')"><i class="fa-solid fa-sort"></i></a> Phone</th>`
+    let sortAsc = `
+    <a type="button" onclick="sortPhoneDesc('phone')"><i class="fa-solid fa-sort-up"></i></a>
+    <span>Phone</span>
+    `
+    document.getElementById(`sort-phone`).innerHTML = sortAsc
+    document.getElementById(`sort-name`).innerHTML = random
+    readData()
+}
+
+const sortPhoneDesc = (phone) => {
+    sortBy = phone
+    sortMode = 'desc'
+    let sortDesc = `
+    <a type="button" onclick="sortPhoneAsc('phone')"><i class="fa-solid fa-sort-down"></i></a>
+    <span>Phone</span>
+    `
+    document.getElementById(`sort-phone`).innerHTML = sortDesc
+    readData()
 }
 
 const readData = async function () {
@@ -123,9 +139,7 @@ const readData = async function () {
         });
 
         for (let i = 1; i <= users.pages; i++) {
-            // pageNumber += `<a ${page == i ? ' active' : ''} " ${users.pages == 1 ? `style =border-radius:4px;` : ''} ${i == 1 && page == i ? `style="border-top-left-radius:4px; border-bottom-left-radius:5px;"` : ''}  ${i == users.pages && page == i ? `style="border-top-right-radius:4px; border-bottom-right-radius:5px;"` : ''} id="pagination-container" onclick="changePage(${i})">${i}</a>`
             pageNumber += `<a class="${page == i ? 'active' : ''}" id="pagination-container" onclick="changePage(${i})">${i}</a>`;
-
         }
 
         if (document.getElementById('limit').value == 0) {
@@ -141,21 +155,8 @@ const readData = async function () {
         ${users.page == 1 ? '' : '<a id="pagination-container" onclick="changePage(page - 1)"><span>&laquo</span></a>'}
         ${pageNumber}
         ${users.page == users.pages ? '' : '<a id="pagination-container" onclick="changePage(page + 1)"><span>&raquo</span></a>'}
-        </div>
-        `
+        </div>`
         }
-        // const targetElement = document.getElementById('rightfooter');
-
-        //     if (document.getElementById('limit').value == 0) {
-        //         const newSpan = document.createElement('span');
-        //         newSpan.textContent = `Showing ${users.offset + 1} to ${users.total} of ${users.total} entries`;
-        //         targetElement.insertBefore(newSpan, targetElement.firstChild);
-        //     } else {
-        //         const newSpan = document.createElement('span');
-        //         newSpan.textContent = `Showing ${users.offset + 1} to ${(Number(limit) + Number(users.offset)) >= users.total ? Number(users.total) : Number(limit) + Number(users.offset)} of ${users.total} entries`;
-        //         targetElement.insertBefore(newSpan, targetElement.firstChild);
-        //     }
-        //     renderPagination(users.pages, users.page)
 
         document.getElementById('pagination-container').innerHTML = pagination
         document.getElementById("bodytable").innerHTML = html

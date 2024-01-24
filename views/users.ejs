@@ -29,12 +29,11 @@
                     </form>
                 </div>
                 <div class="byname">
-                    <input type="text" name="name" placeholder="search" class="search-form" value="" id="searchName"
-                        oninput="searchName" />
-                    <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
+                    <input type="text" name="name" placeholder="search" class="search-form" oninput="searchName()" id="searchName"/>
+                    <button class="src-btn" type="submit" onmouseover="transColor('#eaeaea')" onmouseout="transColor('#919191')" onclick="searchName()"><i class="fa-solid fa-magnifying-glass"
                             style="color: #919191;"></i></button>
-                    <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
-                            style="color: #FFD43B;"></i></button>
+                    <button class="ref-btn" type="button" onmouseover="changeColor('#ffffff')" onmouseout="changeColor('#FFD43B')" onclick="reset()"><i class="fa-solid fa-arrows-rotate"
+                            style="color: #FFD43B;"></i></button>   
                 </div>
             </div>
 
@@ -43,8 +42,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th><i class="fa-solid fa-sort"></i> Name</th>
-                            <th><i class="fa-solid fa-sort"></i> Phone</th>
+                            <th id="sort-name"><a onclick="sortNameAsc('name')"><i class="fa-solid fa-sort" style="color: #000000;"></i> Name</th>
+                            <th id="sort-phone"><a onclick="sortPhoneAsc('phone')"><i class="fa-solid fa-sort" style="color: #000000;"></i> Phone</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -117,5 +116,18 @@
 
 </script>
 <script src="javascripts/user.js"></script>
+
+<script>
+    function changeColor(color) {
+    document.querySelector('.ref-btn i').style.color = color;
+  }
+</script>
+
+<script>
+    function transColor(color) {
+    document.querySelector('.src-btn i').style.color = color;
+  }
+</script>
+
 
 </html>
