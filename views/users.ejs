@@ -20,16 +20,16 @@
                 <div class="entires-data">
                     <form>
                         <span>show</span>
-                        <select class="select-opt">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>all</option>
+                        <select class="select-opt" id="limit" onchange="limitData()">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="0">all</option>
                         </select>
                         <span>entries</span>
                     </form>
                 </div>
                 <div class="byname">
-                    <input type="text" name="name" placeholder="search" class="search-form" value="" />
+                    <input type="text" name="name" placeholder="search" class="search-form" value="" id="searchName" oninput="searchName"/>
                         <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
                                 style="color: #919191;"></i></button>
                         <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
@@ -56,10 +56,9 @@
         <footer>
             <div class="foot">
                 <button class="add-btn" id="addButton" type="button" onclick="onAdd()">+</button>
-                <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a class="active" href="#">1</a>
-                    <a href="#">&raquo;</a>
+                <div id="pagination-container" class="basket-pagi">
+                    <div class="pagination">
+                      </div>
                 </div>
             </div>
         </footer>
@@ -71,7 +70,7 @@
         <div class="popupDelete">
             <div class="delete-header">
                 <p>Delete Confirmation</p>
-                <p onclick="cancleDelete()">X</p>
+                <p onclick="cancleDelete()">&times;</p>
             </div>
             <div class="delete-body">
                 <p class="asking">Are you sure?</p>
@@ -88,7 +87,7 @@
             <div class="popup-form">
                 <div class="form-header">
                     <p>User form</p>
-                    <p onclick="cancleform()">x</p>
+                    <p onclick="cancleform()">&times;</p>
                 </div>
                 <div class="form-body">
                     <div class="form-name">
@@ -102,7 +101,7 @@
                 </div>
                 <div class="form-footer">
                     <span class="btn-cancle" onclick="cancleform()">No</span>
-                    <a id="btn-sub" class="btn-yes" href="#" onclick="saveData()">Save changes</a>
+                    <a id="btn-sub" class="btn-sub" href="#" onclick="saveData()">Save changes</a>
                 </div>
             </div>
         </div>
@@ -113,6 +112,7 @@
         return `
                 <button class="btnAd" onclick="onUpdate('${_id}')"><i class="fa-solid fa-pencil" style="color: #ffffff;"></i></button>
                 <button class="btnDel" onclick="onDelete('${_id}')"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                <a href="/users/${_id}/todos" class="btnTodos"><i class="fa-solid fa-right-to-bracket" style="color: #000000;"></i></a>
             `;
     }
 

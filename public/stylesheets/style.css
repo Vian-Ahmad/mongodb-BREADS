@@ -15,13 +15,13 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-
 }
 
 th,
 td {
   text-align: left;
   padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 th {
@@ -124,15 +124,21 @@ tr:nth-child(odd) {
   margin-left: 10px;
 }
 
+.basket-pagi {
+  padding-left: 100Px;
+}
+
 .pagination {
   display: inline-block;
+  margin-right: 8px;
+
 }
 
 .pagination a {
-  color: rgb(6, 160, 222);
+  color: rgb(51, 190, 244);
   font-weight: bold;
   float: left;
-  padding: 9px 10px;
+  padding: 7px 9px;
   text-decoration: none;
   transition: background-color .3s;
   border: 1px solid rgb(240, 240, 240);
@@ -223,6 +229,10 @@ tr:nth-child(odd) {
   color: white;
 }
 
+.btn-no:hover {
+  background-color: rgb(69, 69, 69);
+}
+
 .btn-yes {
   background-color: rgb(37, 37, 255);
   padding: 8px 16px;
@@ -230,6 +240,10 @@ tr:nth-child(odd) {
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+}
+
+.btn-yes:hover {
+  background-color: rgb(20, 20, 151);
 }
 
 /* notif update */
@@ -325,13 +339,21 @@ tr:nth-child(odd) {
   color: white;
 }
 
-.btn-submit {
+.btn-cancle:hover {
+  background-color: rgb(69, 69, 69);
+}
+
+.btn-sub {
   background-color: rgb(37, 37, 255);
   padding: 8px 16px;
   border-radius: 6px;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+}
+
+.btn-sub:hover {
+  background-color: rgb(20, 20, 151);
 }
 
 .btnAd {
@@ -365,4 +387,19 @@ tr:nth-child(odd) {
   background-color: rgb(143, 7, 7);
   border-color: rgb(143, 7, 7);
   cursor: pointer;
+}
+
+.btnTodos {
+  padding: 6px 8px;
+  background-color: rgb(252, 219, 35);
+  border-radius: 8px;
+  border-style: solid;
+  margin-left: 1px;
+  border-color: rgb(252, 219, 35);
+  cursor: pointer;
+}
+
+.btnTodos:hover {
+  background-color: rgb(133, 116, 19);
+  border-color: rgb(133, 116, 19);
 }
