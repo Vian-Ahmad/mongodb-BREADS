@@ -7,6 +7,11 @@
     <title>MongoDB Breads(Browse, Read, Edit, Add, Delete, Sort)</title>
     <link rel="stylesheet" href="/stylesheets/todo.css" />
     <link rel="stylesheet" href="/stylesheets/fontawesome/css/all.min.css" />
+    <script>
+        let executorid = '<%= userid %>'
+    </script>
+
+
 </head>
 
 <body>
@@ -17,7 +22,7 @@
         <div class="boxBody">
             <div class="firstline">
                 <label for="title">Title</label>
-                <input type="texy" id="title" name="title" placeholder="insert your title" class="bytitle" />
+                <input type="text" id="title" name="title" placeholder="insert your title" class="bytitle" />
             </div>
             <div class="secondline">
                 <label for="deadline">Deadline</label>
@@ -27,18 +32,27 @@
             </div>
             <div class="thirdline">
                 <label for="complete">Complete</label>
-                <select name="complete-" class="bycomplete">
+                <select name="complete" class="bycomplete">
                     <option selected>-select complete-</option>
                     <option value="0">Not Yet</option>
                     <option value="1">Done</option>
+                </select>
             </div>
             <div class="forthline">
-                <a href="">sort by deadline</a>
-                <button class="src-btn" type="submit"><i class="fa-solid fa-magnifying-glass"
-                        style="color: #919191;"></i></button>
-                <button class="ref-btn" type="button"><i class="fa-solid fa-arrows-rotate"
-                        style="color: #FFD43B;"></i></button>
-
+                <div class="subforthline">
+                    <a class="sortingbyname"><i class="fa-solid fa-sort" style="color: #ffffff;"></i> sort by
+                        deadline</a>
+                </div>
+                <div class="tdsBtn">
+                    <button class="ref-tds" type="button"><i class="fa-solid fa-arrows-rotate"
+                            style="color: #000000;"></i></button>
+                    <button class="src-tds" type="submit"><i class="fa-solid fa-magnifying-glass"
+                            style="color: #000000;"></i></button>
+                </div>
+            </div>
+            <div class="addTitle">
+                <input type="texy" id="title" name="title" placeholder="insert your title" class="formTitle" />
+                <a class="saveBtn"><i class="fa-solid fa-circle-down" style="color: #0091ff;"></i></a>
             </div>
         </div>
     </div>

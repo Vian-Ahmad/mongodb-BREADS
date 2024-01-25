@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
   res.render('users');
 });
 
-router.get('/todos', function(req, res, next) {
-  res.render('todos');
+router.get('/users/:id/todos', function(req, res, next) {
+  res.render('todos', {userid : req.params.id});
 });
 
 
