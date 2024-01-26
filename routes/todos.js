@@ -9,13 +9,46 @@ module.exports = function (db) {
     router.get('/', async (req, res, next) => {
         const data = await Todo.find().toArray()
         try {
-            res.status(200).json({ data });
+            const { page = 1, limit = 15, title, startdate, enddate, complete, sortMode, sortBy = '_id', executor } = req.query
+            const params = {}
+            const sort = {}
+            sort[sortBy] = sortMode
+            const offset = (page - 1) * limit
+
+            if (title) {
+                params['title'] = new RegExp(title, '1')
+            }
+
+            if (startdate && enddate) {
+                params['deadline'] = {
+                    $gte: new Date(startdate),
+                    $lte: new Date(enddate)
+                }
+            } else if (startdate) {
+                params['deadline'] = { $gte: new Date(startdate) }
+            } else if (enddate) {
+                params['deadline'] = { $lte: new Date(enddate) }
+            }
+
+            if (complete) {
+                params['complete'] = JSON.parse(complete)
+            }
+
+            if (executor) {
+                params['executor'] = new ObjectId(executor)
+            }
+
+            const total = await Todo.count(params)
+            const pages = Math.ceil(total / limit)
+
+            const todos = await Todo.find(params).sort(sort).limit(Number(limit)).skip(offset).toArray()
+            res.json({ data: todos, limit: Number(limit), page, pages, total });
         } catch (err) {
             res.status(500).json({ err })
         }
     });
 
-    router.get('/:id', async (req, res, next) => {
+    router.get('/:id', async (req, res) => {
         try {
             const id = req.params.id
             const todo = await Todo.findOne({ _id: new ObjectId(id) })
@@ -25,7 +58,7 @@ module.exports = function (db) {
         }
     })
 
-    router.post('/', async (req, res, next) => {
+    router.post('/', async (req, res) => {
         try {
             const { title, executor } = req.body
             const oneDay = 24 * 60 * 60 * 1000
@@ -38,7 +71,7 @@ module.exports = function (db) {
         }
     })
 
-    router.put('/:id', async (req, res, next) => {
+    router.put('/:id', async (req, res) => {
         try {
             const id = req.params.id
             const { title, deadline, complete } = req.body
@@ -49,7 +82,7 @@ module.exports = function (db) {
         }
     })
 
-    router.delete('/:id', async (req, res, next) => {
+    router.delete('/:id', async (req, res) => {
         try {
             const id = req.params.id
             const todo = await Todo.findOneAndDelete({ _id: new ObjectId(id) })

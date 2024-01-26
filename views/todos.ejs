@@ -7,10 +7,13 @@
     <title>MongoDB Breads(Browse, Read, Edit, Add, Delete, Sort)</title>
     <link rel="stylesheet" href="/stylesheets/todo.css" />
     <link rel="stylesheet" href="/stylesheets/fontawesome/css/all.min.css" />
+
     <script>
         let executorid = '<%= userid %>'
     </script>
+    <script src="/javascripts/jquery.min.js"></script>
 
+    <script src="/javascripts/moment.min.js"></script>
 
 </head>
 
@@ -21,14 +24,14 @@
         </div>
         <div class="boxBody">
             <div class="firstline">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="insert your title" class="bytitle" />
+                <label for="titleSearch">Title</label>
+                <input type="text" id="titleSearch" name="title" placeholder="insert your title" class="bytitle" />
             </div>
             <div class="secondline">
                 <label for="deadline">Deadline</label>
-                <input type="date" name="startdate" class="bydate" />
+                <input type="date" name="startdate" id="startdate" class="bydate" />
                 <p>s.d.</p>
-                <input type="date" name="enddate" class="bydate" />
+                <input type="date" name="enddate" id="enddate" class="bydate" />
             </div>
             <div class="thirdline">
                 <label for="complete">Complete</label>
@@ -51,12 +54,62 @@
                 </div>
             </div>
             <div class="addTitle">
-                <input type="texy" id="title" name="title" placeholder="insert your title" class="formTitle" />
-                <a class="saveBtn"><i class="fa-solid fa-circle-down" style="color: #0091ff;"></i></a>
+                <p id="coba">cobain</p>
+                <input type="text" id="title" name="title" placeholder="title" class="formTitle"/>
+                <button class="saveBtn" id="saveBtn"><i class="fa-solid fa-circle-down"
+                        style="color: #0091ff;"></i></button>
+            </div>
+            <div class="showTodos" id="showTodos">
+
             </div>
         </div>
     </div>
+
+    <!-- Modals delete and update -->
+
+    <div id="todos-deleteModal" class="todos-deleteModal">
+        <div class="popupDelete">
+            <div class="delete-header">
+                <p>Delete Confirmation</p>
+                <p onclick="cancleDelete()">&times;</p>
+            </div>
+            <div class="delete-body">
+                <p class="asking">Are you sure?</p>
+            </div>
+            <div class="delete-footer">
+                <span class="btn-no" onclick="cancleDelete()">No</span>
+                <a id="btn-yes" class="btn-yes" href="#" onclick="deleteTodos()">Yes</a>
+            </div>
+        </div>
     </div>
+    <!-- 
+    <div id="todos-formModal" class="todos-formModal">
+        <div class="modals-form">
+            <div class="popup-form">
+                <div class="form-header">
+                    <p>User form</p>
+                    <p onclick="cancleform()">&times;</p>
+                </div>
+                <div class="form-body">
+                    <div class="form-name">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="input-name" required>
+                    </div>
+                    <div class="form-number">
+                        <label for="number">Phone</label>
+                        <input type="tel" id="phone" class="input-number" required>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <span class="btn-cancle" onclick="cancleform()">No</span>
+                    <a id="btn-sub" class="btn-sub" href="#" onclick="saveData()">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script src="/javascripts/todo.js"></script>
+
 </body>
 
 </html>

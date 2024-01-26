@@ -6,15 +6,15 @@ function getId(_id) {
 }
 
 
-function onDelete(_id) {
-    userId = _id
-    document.getElementById("notification-delete").style.display = "block";
+    function onDelete(_id) {
+        userId = _id
+        document.getElementById("notification-delete").style.display = "block";
 
-}
+    }
 
-function cancleDelete() {
-    document.getElementById("notification-delete").style.display = "none";
-}
+    function cancleDelete() {
+        document.getElementById("notification-delete").style.display = "none";
+    }
 
 function onAdd() {
     userId = null
