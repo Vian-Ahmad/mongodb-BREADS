@@ -14,12 +14,18 @@ function getId(_id) {
 
 function onDelete(_id) {
     todoId = _id
-    document.getElementById("todos-deleteModal").style.display = "block";
+    $("#todos-deleteModal").show()
 
 }
 
 function cancleDelete() {
-    document.getElementById("todos-deleteModal").style.display = "none";
+    $("#todos-deleteModal").hide()
+}
+
+
+
+function cancleEdit() {
+    $("#todos-formModal").hide()
 }
 
 const getData = async (_id) => {
@@ -30,9 +36,10 @@ const getData = async (_id) => {
             method: "GET",
             dataType: "json",
         });
-        $('#editTitle').val(response.title)
-        $('#editDeadline').val(moment(response.deadline).format('YYYY-MM-DDThh:mm'))
-        $('#editComplete').prop('checked', response.complete)
+        $('#titleEditM').val(response.title)
+        $('#deadlineM').val(moment(response.deadline).format('YYYY-MM-DDThh:mm'))
+        $('#completeM').prop('checked', response.complete)
+        $("#todos-formModal").show()
     } catch (err) {
         throw err
     }
@@ -64,8 +71,8 @@ const loadData = async () => {
             <div id="${item._id}" class="show-todos ${item.complete == false && new Date(`${item.deadline}`).getTime() < new Date().getTime() ? ' redClr' : item.complete == true ? ' greenClr' : ' greyClr'}">
                  ${moment(item.deadline).format('DD-MM-YYYY HH:mm')} ${item.title}
                  <div>
-                    <a type="button" onclick="getData('${item._id}')" data-bs-toggle="modal" data-bs-target="#formTodo" ><i class="fa-solid fa-pencil"></i></a>
-                    <a type="button" onclick="onDelete('${item._id}')"  data-bs-toggle="modal" data-bs-target="#todos-deleteModal"><i class="fa-solid fa-trash mx-2"></i></a>
+                    <a type="button" onclick="getData('${item._id}')"><i class="fa-solid fa-pencil"></i></a>
+                    <a type="button" onclick="onDelete('${item._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
                  </div>    
                 </div>`
         });
@@ -86,13 +93,13 @@ $('#saveBtn').click(() => {
     addTodo()
 })
 
-
+$('#btn-sub').click(() => {
+    updateTodos()
+})
 
 const addTodo = async () => {
-    title = $('#title').val()
-    console.log(title, "WOIYAAAAAAAHHH")
-    console.log($('#coba').val())
     try {
+        title = $('#title').val()
         const a_day = 24 * 60 * 60 * 1000
         const response = await $.ajax({
             url: `/api/todos`,
@@ -102,20 +109,59 @@ const addTodo = async () => {
                 title,
                 executor
             }
-        });        
+        });
         let addList = ''
         addList += `
         <div id="${response[0]._id}" class="show-todos ${response[0].complete == false && new Date(`${response[0].deadline}`).getTime() < new Date().getTime() ? ' redClr' : response[0].complete == true ? ' greenClr' : ' greyClr'}">
         ${moment(new Date(Date.now() + a_day)).format('DD-MM-YYYY HH:mm')} ${title}
         <div>
         <a type="button" onclick="getData('${response[0]._id}')" data-bs-toggle="modal" data-bs-target="#formTodo"><i class="fa-solid fa-pencil"></i></a>
-        <a type="button" onclick="onDelete('${response[0]._id}')" data-bs-toggle="modal" data-bs-target="#todos-deleteModal"><i class="fa-solid fa-trash mx-2"></i></a>
+        <a type="button" onclick="onDelete('${response[0]._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
         </div>
          </div>`
 
         $('#showTodos').prepend(addList)
-        // title = ''
-        // $('#title').val('')
+        title = ''
+        $('#title').val('')
+
+    } catch (error) {
+        throw error
+    }
+}
+
+const updateTodos = async () => {
+    try {
+        let title = $('#titleEditM').val()
+        let deadline = $('#deadlineM').val()
+        let complete = $('#completeM').prop('checked')
+        const response = await $.ajax({
+            url: `/api/todos/${todoId}`,
+            method: "PUT",
+            dataType: "json",
+            data: {
+                title,
+                executor,
+                deadline,
+                complete: Boolean(complete)
+            }
+        })
+        let editList = ""
+        editList += `
+        ${moment(new Date(deadline)).format('DD-MM-YYYY HH:mm')} ${title}
+        <div>
+        <a type="button" onclick="getData('${response[0]._id}')"><i class="fa-solid fa-pencil"></i></a>
+        <a type="button" onclick="onDelete('${response[0]._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
+        </div>`
+
+        $(`#${response._id}`).attr('class', `show-todos ${response.complete == false && new Date(`${response.deadline}`).getTime() < new Date().getTime() ? ' redClr' : response.complete == true ? ' greenclr' : ' greyClr'}`).html(editList)
+        title = $('#titleSearch').val()
+        if ($('#bycomplete').val()) {
+            complete = $('#bycomplete').val()
+        } else {
+            complete = ''
+        }
+        $("#todos-formModal").hide()
+        loadData(complt)
 
     } catch (error) {
         throw error
@@ -129,7 +175,7 @@ const deleteTodos = async () => {
             method: "DELETE",
             dataType: "json"
         })
-        document.getElementById("todos-deleteModal").style.display = "none";
+        $("#todos-deleteModal").hide()
         $(`#${todoId}`).remove()
     } catch (error) {
         throw error

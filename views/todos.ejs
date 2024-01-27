@@ -35,7 +35,7 @@
             </div>
             <div class="thirdline">
                 <label for="complete">Complete</label>
-                <select name="complete" class="bycomplete">
+                <select name="complete" class="bycomplete" dir="bycomplete">
                     <option selected>-select complete-</option>
                     <option value="0">Not Yet</option>
                     <option value="1">Done</option>
@@ -54,7 +54,6 @@
                 </div>
             </div>
             <div class="addTitle">
-                <p id="coba">cobain</p>
                 <input type="text" id="title" name="title" placeholder="title" class="formTitle"/>
                 <button class="saveBtn" id="saveBtn"><i class="fa-solid fa-circle-down"
                         style="color: #0091ff;"></i></button>
@@ -82,31 +81,36 @@
             </div>
         </div>
     </div>
-    <!-- 
+    
     <div id="todos-formModal" class="todos-formModal">
         <div class="modals-form">
             <div class="popup-form">
                 <div class="form-header">
                     <p>User form</p>
-                    <p onclick="cancleform()">&times;</p>
+                    <p onclick="cancleEdit()">&times;</p>
                 </div>
                 <div class="form-body">
-                    <div class="form-name">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="input-name" required>
+                    <div class="form-title">
+                        <label for="titleEdit">title</label>
+                        <input type="text" id="titleEditM" class="input-title">
                     </div>
-                    <div class="form-number">
-                        <label for="number">Phone</label>
-                        <input type="tel" id="phone" class="input-number" required>
+                    <div class="form-deadline">
+                        <label for="deadline">Deadline</label>
+                        <input type="datetime-local" id="deadlineM" class="input-date">
+                    </div>
+                    <div class="form-noted">
+                        <label for="complete">Complete</label>
+                        <input type="checkbox" id="completeM" class="checkbox">
+                        <a>Done</a>
                     </div>
                 </div>
                 <div class="form-footer">
-                    <span class="btn-cancle" onclick="cancleform()">No</span>
-                    <a id="btn-sub" class="btn-sub" href="#" onclick="saveData()">Save changes</a>
+                    <span class="btn-cancle" onclick="cancleEdit()">No</span>
+                    <a id="btn-sub" class="btn-sub" href="#" onclick="updateTodos()">Save changes</a>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <script src="/javascripts/todo.js"></script>
 

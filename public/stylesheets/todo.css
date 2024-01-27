@@ -261,3 +261,121 @@ body {
   .btn-yes:hover {
     background-color: rgb(20, 20, 151);
   }
+
+  .fa-solid {
+    cursor: pointer;
+  }
+
+  /* modals update */
+
+  #todos-formModal {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(65, 65, 65, 0.294);
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+  }
+  
+  .modals-form {
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+  }
+  
+  .popup-form {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(230, 230, 230);
+    width: 35%;
+    margin-top: 30px;
+  }
+  
+  .form-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+  
+  }
+  
+  .form-body {
+    border-top: 1px solid rgb(230, 230, 230);
+    border-bottom: 1px solid rgb(230, 230, 230);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+  
+  }
+  
+  .form-title {
+    margin: 20px 0px 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .input-title {
+    padding: 7px;
+    width: 70%;
+    border-radius: 8px;
+    border-style: solid;
+  }
+  
+  .form-deadline {
+    margin: 10px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .input-date {
+    padding: 7px;
+    width: 70%;
+    border-radius: 8px;
+    border-style: solid;
+  }
+
+  .form-noted {
+    background-color: #155724;
+  }
+  
+  .form-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+  }
+  
+  .btn-cancle {
+    background-color: grey;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  
+  .btn-cancle:hover {
+    background-color: rgb(69, 69, 69);
+  }
+  
+  .btn-sub {
+    background-color: rgb(37, 37, 255);
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  
+  .btn-sub:hover {
+    background-color: rgb(20, 20, 151);
+  }
