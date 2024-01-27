@@ -37,7 +37,7 @@ const getData = async (_id) => {
             dataType: "json",
         });
         $('#titleEditM').val(response.title)
-        $('#deadlineM').val(moment(response.deadline).format('YYYY-MM-DDThh:mm'))
+        $('#deadlineM').val(moment(response.deadline).format('YYYY-MM-DDTHH:mm'))
         $('#completeM').prop('checked', response.complete)
         $("#todos-formModal").show()
     } catch (err) {
@@ -115,7 +115,7 @@ const addTodo = async () => {
         <div id="${response[0]._id}" class="show-todos ${response[0].complete == false && new Date(`${response[0].deadline}`).getTime() < new Date().getTime() ? ' redClr' : response[0].complete == true ? ' greenClr' : ' greyClr'}">
         ${moment(new Date(Date.now() + a_day)).format('DD-MM-YYYY HH:mm')} ${title}
         <div>
-        <a type="button" onclick="getData('${response[0]._id}')" data-bs-toggle="modal" data-bs-target="#formTodo"><i class="fa-solid fa-pencil"></i></a>
+        <a type="button" onclick="getData('${response[0]._id}')"><i class="fa-solid fa-pencil"></i></a>
         <a type="button" onclick="onDelete('${response[0]._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
         </div>
          </div>`
@@ -145,14 +145,11 @@ const updateTodos = async () => {
                 complete: Boolean(complete)
             }
         })
+        console.log(response, 'apa nih')
         let editList = ""
         editList += `
-        ${moment(new Date(deadline)).format('DD-MM-YYYY HH:mm')} ${title}
-        <div>
-        <a type="button" onclick="getData('${response[0]._id}')"><i class="fa-solid fa-pencil"></i></a>
-        <a type="button" onclick="onDelete('${response[0]._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
-        </div>`
-
+        ${moment(new Date(deadline)).format('YYYY-MM-DDTHH:mm')} ${title}
+        `
         $(`#${response._id}`).attr('class', `show-todos ${response.complete == false && new Date(`${response.deadline}`).getTime() < new Date().getTime() ? ' redClr' : response.complete == true ? ' greenclr' : ' greyClr'}`).html(editList)
         title = $('#titleSearch').val()
         if ($('#bycomplete').val()) {
