@@ -85,17 +85,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* .subforthline {
-    background-color: rgb(15, 117, 15);
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 170px;
-    border-radius: 8px;
-    color: white;
-} */
-
 .sortingbydeadline {
     background-color: rgb(15, 117, 15);
     margin-left: 10px;
@@ -337,13 +326,16 @@ body {
     margin: 20px 0px 10px 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin-left: 10px;
+    margin-right: 10px
+
   }
   
   .input-title {
     padding: 7px;
-    width: 70%;
+    width: 80%;
     border-radius: 8px;
     border-style: solid;
   }
@@ -352,19 +344,21 @@ body {
     margin: 10px 0px 20px 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin-left: 10px;
+    margin-right: 10px
   }
   
   .input-date {
     padding: 7px;
-    width: 70%;
+    width: 80%;
     border-radius: 8px;
     border-style: solid;
   }
 
   .form-noted {
-    background-color: #155724;
+    margin-left: 10px;
   }
   
   .form-footer {
