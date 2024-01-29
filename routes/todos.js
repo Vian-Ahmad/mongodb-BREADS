@@ -16,7 +16,7 @@ module.exports = function (db) {
             const offset = (page - 1) * limit
 
             if (title) {
-                params['title'] = new RegExp(title, '1')
+                params['title'] = new RegExp(title, 'i')
             }
 
             if (startdate && enddate) {

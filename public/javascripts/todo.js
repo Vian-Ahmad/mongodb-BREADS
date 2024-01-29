@@ -1,16 +1,16 @@
-let title = '', page = 1, complete = '', startDeadline = '', endDeadline = '', sortBy = '_id', sortMode = 'desc', limit = 10, executor = executorid, deadline = null, todoId = null, id = null, complt = false;
+let title = '', page = 1, complete = '', startdate = '', enddate = '', sortBy = '_id', sortMode = 'desc', limit = 10, executor = executorid, deadline = '', todoId = null, id = null, complt = false;
 
 
 function getId(_id) {
     todoId = _id
 }
 
-// $(window).scroll(function () {
-//     if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
-//         page++
-//         loadData(complt)
-//     }
-// })
+$(window).scroll(function () {
+    if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+        page++
+        loadData(complt)
+    }
+})
 
 function onDelete(_id) {
     todoId = _id
@@ -22,11 +22,53 @@ function cancleDelete() {
     $("#todos-deleteModal").hide()
 }
 
-
-
 function cancleEdit() {
     $("#todos-formModal").hide()
 }
+
+const searchTodo = () => {
+    page = 1
+    title = $("#titleSearch").val()
+    startdate = $("#startdate").val()
+    enddate = $("#enddate").val()
+    if ($("#bycomplete").val()) complete = $("#bycomplete").val()
+    else complete = ""
+    loadData(!complt)
+
+}
+
+const reset = () => {
+    title = ''
+    startdate = ''
+    enddate = ''
+    complete = ''
+    $('#titleSearch').val('')
+    $('#startdate').val('')
+    $('#enddate').val('')
+    $('#complete').val('')
+    page = 1
+
+    sortBy = '_id'
+    sortMode = 'desc'
+    let defaultMode = `
+    <button class="sortingbydeadline" onclick="sortToggle()"><i class="fa-solid fa-sort"></i>&nbsp;sort by deadline</button>
+    `
+    $('#btnClick').html(defaultMode)
+    loadData(!complt)
+}
+
+const sortToggle = () => {
+    page = 1;
+    sortBy = 'deadline';
+    sortMode = (sortMode === 'asc') ? 'desc' : 'asc';
+
+    const arrowIcon = (sortMode === 'asc') ? 'fa-sort-down' : 'fa-sort-up';
+    const buttonText = `<i class="fa-solid ${arrowIcon}" style="color: #ffffff;"></i>&nbsp;sort by deadline`;
+    
+    $("#btnClick").html(`<button class="sortingbydeadline" onclick="sortToggle()">${buttonText}</button>`);
+    loadData(!complt);
+}
+
 
 const getData = async (_id) => {
     try {
@@ -58,8 +100,8 @@ const loadData = async () => {
                 sortMode,
                 deadline,
                 title,
-                startDeadline,
-                endDeadline,
+                startdate,
+                enddate,
                 complete,
                 page,
                 limit
@@ -83,7 +125,7 @@ const loadData = async () => {
             $('#showTodos').append(list)
         }
     } catch (error) {
-        throw error.message
+        throw error
 
     }
 }
@@ -128,6 +170,13 @@ const addTodo = async () => {
         throw error
     }
 }
+
+function handleTitleKeyPress(event) {
+    if (event.key === "ENTER") {
+        addTodo();
+    }
+}
+$('#title').on('keypress', handleTitleKeyPress);
 
 const updateTodos = async () => {
     try {

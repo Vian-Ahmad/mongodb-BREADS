@@ -29,32 +29,32 @@
             </div>
             <div class="secondline">
                 <label for="deadline">Deadline</label>
-                <input type="date" name="startdate" id="startdate" class="bydate" />
+                <input type="datetime-local" name="startdate" id="startdate" class="bydate" />
                 <p>s.d.</p>
-                <input type="date" name="enddate" id="enddate" class="bydate" />
+                <input type="datetime-local" name="enddate" id="enddate" class="bydate" />
             </div>
             <div class="thirdline">
                 <label for="complete">Complete</label>
-                <select name="complete" class="bycomplete" dir="bycomplete">
-                    <option selected>-select complete-</option>
-                    <option value="0">Not Yet</option>
-                    <option value="1">Done</option>
+                <select name="complete" class="bycomplete" id="bycomplete">
+                    <option value="">-select complete-</option>
+                    <option value="true">Done</option>
+                    <option value="false">Not Yet</option>
                 </select>
             </div>
             <div class="forthline">
-                <div class="subforthline">
-                    <a class="sortingbyname"><i class="fa-solid fa-sort" style="color: #ffffff;"></i> sort by
-                        deadline</a>
+                <div class="subforthline" id="btnClick">
+                    <button class="sortingbydeadline" onclick="sortToggle()"><i class="fa-solid fa-sort" style="color: #ffffff;"></i>&nbsp;sort
+                        by deadline</button>
                 </div>
                 <div class="tdsBtn">
-                    <button class="ref-tds" type="button"><i class="fa-solid fa-arrows-rotate"
+                    <button class="ref-tds" type="button" onclick="reset()"><i class="fa-solid fa-arrows-rotate"
                             style="color: #000000;"></i></button>
-                    <button class="src-tds" type="submit"><i class="fa-solid fa-magnifying-glass"
+                    <button class="src-tds" type="submit" onclick="searchTodo()"><i class="fa-solid fa-magnifying-glass"
                             style="color: #000000;"></i></button>
                 </div>
             </div>
             <div class="addTitle">
-                <input type="text" id="title" name="title" placeholder="title" class="formTitle"/>
+                <input type="text" id="title" name="title" placeholder="title" class="formTitle" />
                 <button class="saveBtn" id="saveBtn"><i class="fa-solid fa-circle-down"
                         style="color: #0091ff;"></i></button>
             </div>
@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="todos-formModal" class="todos-formModal">
         <div class="modals-form">
             <div class="popup-form">
