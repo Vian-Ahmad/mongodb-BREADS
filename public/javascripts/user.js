@@ -99,7 +99,7 @@ const sortNameDesc = (name) => {
 const sortPhoneAsc = (phone) => {
     sortBy = phone
     sortMode = 'asc'
-    let random = `<a type="button" onclick="sortNameAsc('name')"><i class="fa-solid fa-sort"></i></a> Phone</th>`
+    let random = `<a type="button" onclick="sortNameAsc('name')"><i class="fa-solid fa-sort"></i></a> Name</th>`
     let sortAsc = `
     <a type="button" onclick="sortPhoneDesc('phone')"><i class="fa-solid fa-sort-up"></i></a>
     <span>Phone</span>

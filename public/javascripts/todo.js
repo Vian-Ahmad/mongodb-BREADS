@@ -64,7 +64,7 @@ const sortToggle = () => {
 
     const arrowIcon = (sortMode === 'asc') ? 'fa-sort-down' : 'fa-sort-up';
     const buttonText = `<i class="fa-solid ${arrowIcon}" style="color: #ffffff;"></i>&nbsp;sort by deadline`;
-    
+
     $("#btnClick").html(`<button class="sortingbydeadline" onclick="sortToggle()">${buttonText}</button>`);
     loadData(!complt);
 }
@@ -194,12 +194,15 @@ const updateTodos = async () => {
                 complete: Boolean(complete)
             }
         })
-        console.log(response, 'apa nih')
         let editList = ""
         editList += `
-        ${moment(new Date(deadline)).format('YYYY-MM-DDTHH:mm')} ${title}
+        ${moment(new Date(deadline)).format('DD-MM-YYYY HH:mm')} ${title}
+        <div>
+        <a type="button" onclick="getData('${response._id}')"><i class="fa-solid fa-pencil"></i></a>
+        <a type="button" onclick="onDelete('${response._id}')"><i class="fa-solid fa-trash mx-2"></i></a>
+        </div>
         `
-        $(`#${response._id}`).attr('class', `show-todos ${response.complete == false && new Date(`${response.deadline}`).getTime() < new Date().getTime() ? ' redClr' : response.complete == true ? ' greenclr' : ' greyClr'}`).html(editList)
+        $(`#${response._id}`).attr('class', `show-todos ${response.complete == false && new Date(`${response.deadline}`).getTime() < new Date().getTime() ? ' redClr' : response.complete == true ? ' greenClr' : ' greyClr'}`).html(editList)
         title = $('#titleSearch').val()
         if ($('#bycomplete').val()) {
             complete = $('#bycomplete').val()
