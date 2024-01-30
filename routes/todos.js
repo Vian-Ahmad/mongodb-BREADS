@@ -9,7 +9,7 @@ module.exports = function (db) {
     router.get('/', async (req, res, next) => {
         const data = await Todo.find().toArray()
         try {
-            const { page = 1, limit = 15, title, startdate, enddate, complete, sortMode, sortBy = '_id', executor } = req.query
+            const { page = 1, limit = 10, title, startdate, enddate, complete, sortMode, sortBy = '_id', executor } = req.query
             const params = {}
             const sort = {}
             sort[sortBy] = sortMode

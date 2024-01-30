@@ -45,7 +45,7 @@ const reset = () => {
     $('#titleSearch').val('')
     $('#startdate').val('')
     $('#enddate').val('')
-    $('#complete').val('')
+    $('#bycomplete').val('')
     page = 1
 
     sortBy = '_id'
